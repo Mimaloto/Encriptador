@@ -1,5 +1,7 @@
 const textArea =document.querySelector(".campoTexto");
 const mensaje =document.querySelector(".mensaje");
+const btnCopy = document.getElementById("btnCopiar");
+const btnReparar = document.querySelector("#reparar");
 
 //La letra "e" es convertida para "enter"
 //La letra "i" es convertida para "imes"
@@ -35,6 +37,13 @@ function btnDesencriptar(){
    
 
 }
+function reparar(){
+    let textoAreparar = removeAccents(ingresarTexto.value);
+    textoAreparar = textoAreparar.toLowerCase();
+    ingresarTexto.value = textoAreparar;
+    estadoNormal();
+    ingresarTexto.focus();
+}
 
 function desencriptar(stringDesencriptado){
     let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
@@ -47,4 +56,13 @@ function desencriptar(stringDesencriptado){
 
     }
     return stringDesencriptado
+}
+function copiar(){
+    if(msg.value != ""){
+        ingresarTexto.value= msg.value;
+        navigator.clipboard.writeText(msg.value);
+        estadoNormal();
+        ingresarTexto.select();
+    }
+    ingresarTexto.focus();
 }
